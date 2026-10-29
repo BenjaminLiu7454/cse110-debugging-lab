@@ -1,7 +1,7 @@
 # Lemon Clicker Bug Report
 
 **Name: Benjamin Liu**
-**Tickets solved:** 1 -->
+**Tickets solved:** 1, 3 -->
 
 Copy the template below once for each ticket you solved. 
 
@@ -40,7 +40,7 @@ the fetch("/api/stats") used the path /api/stat instead of stats
 Restarted the server and screens and noted the menu screen had the value expected (best:0) is addressed in the next bug report.
 <!-- How did you confirm the problem is gone? -->
 
-## Ticket <2>: <ticket The lemon only lands in four spots>
+## Ticket <3>: <ticket The lemon only lands in four spots>
 
 ### Actual cause
 
@@ -69,5 +69,36 @@ removed Math.round on the outside of the randomX and randomY variables
 
 ### Confirming the fix
 
-Restarted the server and screens and noted the menu screen had the value expected (best:0) is addressed in the next bug report.
+Restarted the server and screens and noted the lemon positions were not consistently in the far corner.
+
+
+## Ticket <2>: <ticket Best score always shows 0>
+
+### Actual cause
+
+<!-- Which file and function was the bug in, and what was wrong with the code?
+     Explain why that code produced the behavior described in the ticket. -->
+
+**File / function:** index.ts
+
+**What was wrong:** Best score on menu always shows as 0 regardless of score
+
+### Fix
+
+changed inequality of the check for best, as it only updated score if the score being checked was less than best
+
+### How did you find it?
+### Hypothesis testing
+    after fixing ticket 1, I kept in mind that the logic for calculating best and average were stored in index.ts, so I assumed the bug was there
+#### Backward tracing
+
+1. **Symptom:** Best score on menu always shows as 0 regardless of score
+2. **Traced back to:** index.ts 
+4. **Buggy code:** for loop calculating best score had the inequality flipped
+
+<!-- It is okay to use your judgement here in limiting the number of traceback steps. We want to understand your 
+    reasoning for how you discovered where the bug was -->
+
+### Confirming the fix
+Best 0 was now 19 as set by the leaderboard earlier, played a round to check it updates with higher scores and doesn't update with lower
 <!-- How did you confirm the problem is gone? -->
